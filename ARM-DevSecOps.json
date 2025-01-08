@@ -47,8 +47,6 @@
       "type": "Microsoft.Web/sites",
       "apiVersion": "2021-03-01",
       "name": "[parameters('containerInstanceName')]", 
-      // or you could do something like 
-      // [format('sonarqube-devsecops-{0}', resourcegroup().tags.LabInstance)]
       "location": "[parameters('location')]",
       "kind": "app,linux,container",
       "identity": {
@@ -62,26 +60,12 @@
         "hyperV": false,
         "siteConfig": {
           "numberOfWorkers": 1,
-          // Point to your ACR’s SonarQube image. If you host “sonarqube” in your ACR,
-          // you might do something like "DOCKER|<acrLoginServer>/sonarqube:latest"
-          "linuxFxVersion": "[format('DOCKER|{0}/sonarqube:latest', reference(resourceId('Microsoft.ContainerRegistry/registries', parameters('acrName'))).loginServer)]",
+          "linuxFxVersion": "DOCKER|sonarqube:latest",
           "acrUseManagedIdentityCreds": false,
           "http20Enabled": true,
           "functionAppScaleLimit": 0,
           "minimumElasticInstanceCount": 0,
           "appSettings": [
-            {
-              "name": "DOCKER_REGISTRY_SERVER_URL",
-              "value": "[reference(resourceId('Microsoft.ContainerRegistry/registries', parameters('acrName'))).loginServer]"
-            },
-            {
-              "name": "DOCKER_REGISTRY_SERVER_USERNAME",
-              "value": "[listCredentials(resourceId('Microsoft.ContainerRegistry/registries', parameters('acrName')), '2021-12-01-preview').username]"
-            },
-            {
-              "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
-              "value": "[listCredentials(resourceId('Microsoft.ContainerRegistry/registries', parameters('acrName')), '2021-12-01-preview').passwords[0].value]"
-            },
             {
               "name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE",
               "value": "true"
