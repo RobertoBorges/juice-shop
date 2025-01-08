@@ -85,16 +85,7 @@
             {
               "name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE",
               "value": "true"
-            },
-            // If needed, pass additional environment variables, e.g. SonarQube DB connection
-            // {
-            //   "name": "SONARQUBE_JDBC_USERNAME",
-            //   "value": "<username>"
-            // },
-            // {
-            //   "name": "SONARQUBE_JDBC_PASSWORD",
-            //   "value": "<password>"
-            // }
+            }
           ]
         },
         "scmSiteAlsoStopped": false,
