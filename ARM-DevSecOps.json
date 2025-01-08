@@ -94,11 +94,11 @@
       "name": "[parameters('appServicePlanName')]",
       "location": "[parameters('location')]",
       "sku": {
-        "name": "F1",
-        "tier": "Free",
-        "size": "F1",
-        "family": "F",
-        "capacity": 0
+        "name": "B3",
+        "tier": "Basic",
+        "size": "B3",
+        "family": "B",
+        "capacity": 1
       },
       "kind": "linux",
       "properties": {
