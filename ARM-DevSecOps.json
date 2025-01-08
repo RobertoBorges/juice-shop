@@ -60,7 +60,7 @@
         "hyperV": false,
         "siteConfig": {
           "numberOfWorkers": 1,
-          "linuxFxVersion": "DOCKER|sonarqube:latest",
+          "linuxFxVersion": "DOCKER|sonarqube",
           "acrUseManagedIdentityCreds": false,
           "http20Enabled": true,
           "functionAppScaleLimit": 0,
