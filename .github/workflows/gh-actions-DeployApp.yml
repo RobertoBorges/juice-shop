@@ -31,7 +31,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: .
-        push: true
+        push: false
         tags: ${{ secrets.CONTAINERREGISTRY }}.azurecr.io/devsecops:${{ github.run_id }} 
         file: ./Dockerfile
               
