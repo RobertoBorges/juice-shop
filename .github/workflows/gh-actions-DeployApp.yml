@@ -35,7 +35,7 @@ jobs:
 
           az account set --subscription $(az account show --query 'id' --output tsv)
 
-          sudo docker build -t ${{ secrets.CONTAINERREGISTRY }}.azurecr.io/devsecops:${{ github.run_id }} .
+          docker build -t ${{ secrets.CONTAINERREGISTRY }}.azurecr.io/devsecops:${{ github.run_id }} .
 
           az acr login -n ${{ secrets.CONTAINERREGISTRY }}
 
