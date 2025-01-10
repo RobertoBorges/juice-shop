@@ -24,6 +24,17 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         allow-no-subscriptions: true
 
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.CONTAINERREGISTRY }}.azurecr.io/devsecops:${{ github.run_id }} 
+        file: ./Dockerfile
+              
     - uses: azure/cli@v1.0.0
       with:
         inlineScript: 
@@ -34,8 +45,6 @@ jobs:
           az resource list --subscription $(az account show --query 'id' --output tsv)
 
           az account set --subscription $(az account show --query 'id' --output tsv)
-
-          docker build -t ${{ secrets.CONTAINERREGISTRY }}.azurecr.io/devsecops:${{ github.run_id }} .
 
           az acr login -n ${{ secrets.CONTAINERREGISTRY }}
 
