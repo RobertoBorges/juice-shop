@@ -1,9 +1,10 @@
-name: Juiceshop-DevSecOps-App-Deployment
+name: Juiceshop DevSecOps App Deployment
 
 on:
   push:
     branches:
     - none
+  workflow_dispatch:
 
 permissions:
       id-token: write
