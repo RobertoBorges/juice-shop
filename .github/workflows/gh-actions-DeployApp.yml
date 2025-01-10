@@ -31,9 +31,9 @@ jobs:
 
           az account show 
 
-          az resource list --subscription (az account show --query 'id' --output tsv)
+          az resource list --subscription $(az account show --query 'id' --output tsv)
 
-          az account set --subscription (az account show --query 'id' --output tsv)
+          az account set --subscription $(az account show --query 'id' --output tsv)
 
           sudo docker build -t ${{ secrets.CONTAINERREGISTRY }}.azurecr.io/devsecops:${{ github.run_id }} .
 
